@@ -1,0 +1,49 @@
+.board-container {
+    width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.post-list {
+    border: 1px solid #000;
+}
+
+.post {
+    padding: 10px;
+    border-bottom: 1px solid #000;
+}
+
+.post:last-child {
+    border-bottom: none;
+}
+
+.pagination {
+    margin-top: 10px;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+}
+
+.pagination .active {
+    font-weight: bold;
+}
+
+.write-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.no-posts-message {
+    font-size: 18px;
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}

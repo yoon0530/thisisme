@@ -1,0 +1,134 @@
+.signup {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 100px;
+}
+
+.signup .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+}
+
+.signup .container .title {
+    width: 500px;
+    border-bottom: 1px solid #000; /* $color-main 대체 */
+}
+
+.signup .container .title .mainTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000; /* $color-main 대체 */
+    font-size: 35px;
+}
+
+.signup .container .title .subTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.signup .container .title .subTitle .fontBold {
+    color: #000; /* $color-main 대체 */
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.signup .container .title .subTitle .fontRight {
+    display: inline;
+    color: #000; /* $color-main 대체 */
+}
+
+.signup .container .title .subTitle .fontRight .fontRed {
+    color: rgb(153, 15, 15);
+    font-weight: 700;
+}
+
+.signup .container .inputTable {
+    width: 500px;
+    margin-top: 20px;
+}
+
+.signup .container .inputTable .inputAdd {
+    margin-left: 150px;
+    color: rgba(0, 0, 0, 0.663);
+    font-size: 12px;
+}
+
+.signup .container .agreement {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #000; /* $color-main 대체 */
+}
+
+.signup .container .agreement &Title {
+    display: flex;
+    color: #000; /* $color-main 대체 */
+}
+
+.signup .container .agreement &Title &Red {
+    color: rgb(153, 15, 15);
+}
+
+.signup .container .agreement &List {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    color: #000; /* $color-main 대체 */
+}
+
+.signup .container .agreement &List &Info {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup .container .inputButton {
+    width: 180px;
+    height: 40px;
+    margin-top: 50px;
+    border: 1px solid #000; /* $color-main 대체 */
+    border-radius: 5px;
+    background-color: #000; /* $color-main 대체 */
+    color: white;
+    font-size: 15px;
+}
+
+.agreementListInfoBox {
+    display: flex;
+    align-items: center;
+}
+
+.agreementListInfoBox .checkButton {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    color: #000; /* $color-main 대체 */
+}
+
+.agreementListInfoBox .disabled {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    color: rgba(143, 116, 87, 0.434);
+}
+
+.agreementListInfoBox .agreeList {
+    font-size: 15px;
+}
+
+.agreeDetail {
+    color: rgba(143, 116, 87, 0.434);
+    font-size: 13px;
+}
+
+.agreeDetails {
+    color: rgb(153, 15, 15);
+    font-size: 13px;
+    font-weight: 700;
+}

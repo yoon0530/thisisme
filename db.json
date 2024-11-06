@@ -1,0 +1,92 @@
+{
+  "posts": [
+    {
+      "id": "3ee8",
+      "title": "dd",
+      "content": "dd",
+      "author": "1"
+    }
+  ],
+  "points": [
+    {
+      "id": "1",
+      "category": "충전",
+      "date": "2024-11-04T10:00:00Z",
+      "amount": 50000,
+      "balance": 150000,
+      "status": "완료"
+    },
+    {
+      "id": "2",
+      "category": "사용",
+      "date": "2024-11-04T12:00:00Z",
+      "amount": -10000,
+      "balance": 130000,
+      "status": "완료"
+    }
+  ],
+  "recharges": [
+    {
+      "id": "1",
+      "accountNumber": "kakao",
+      "amount": 50000,
+      "date": "2023-01-01T12:00:00.000Z"
+    },
+    {
+      "id": "f04d",
+      "accountNumber": "kakao",
+      "amount": 12222,
+      "date": "2024-11-04T14:24:38.047Z"
+    }
+  ],
+  "exchanges": [
+    {
+      "id": "1",
+      "bank": "카카오뱅크",
+      "points": 50000,
+      "date": "2023-01-01T12:00:00.000Z"
+    },
+    {
+      "id": "6c8a",
+      "bank": "카카오뱅크",
+      "points": 11111,
+      "date": "2024-11-04T14:26:31.138Z"
+    },
+    {
+      "id": "2462",
+      "bank": "",
+      "points": 1111,
+      "date": "2024-11-06T00:48:23.962Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "email": "example@example.com",
+      "password": "password123",
+      "name": "John Doe",
+      "phoneNumber": "010-1234-5678"
+    },
+    {
+      "id": "0f4f",
+      "email": "1",
+      "password": "1",
+      "name": "1",
+      "phoneNumber": "1"
+    },
+    {
+      "id": "03c2",
+      "email": "1",
+      "password": "1",
+      "name": "1",
+      "phoneNumber": "1"
+    },
+    {
+      "id": "9a9d",
+      "email": "yoon0530@naver.com",
+      "password": "1234",
+      "name": "이윤철",
+      "phoneNumber": "01090825452"
+    }
+  ]
+}

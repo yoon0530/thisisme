@@ -1,0 +1,164 @@
+.mypage .grayWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 40vh;
+    background-color: rgba(143, 116, 87, 0.131);
+    color: #000; /* $color-main 대체 */
+}
+
+.mypage .grayWrapper .grayLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 460px;
+    height: 200px;
+    margin: 5px;
+    padding-left: 30px;
+    background-color: white;
+    font-size: 23px;
+}
+
+.mypage .grayWrapper .grayLeft .textBrown {
+    color: #000; /* $color-main 대체 */
+    font-weight: 800;
+}
+
+.mypage .grayWrapper .grayLeft .buttonStyle {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #000; /* $color-main 대체 */
+    color: white;
+    text-decoration: none;
+}
+
+.mypage .grayWrapper .grayRightTop {
+    display: flex;
+}
+
+.mypage .grayWrapper .grayRightTopFirst {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 280px;
+    height: 140px;
+    margin: 5px 0px;
+    padding-left: 30px;
+    background-color: white;
+    font-size: 18px;
+}
+
+.mypage .grayWrapper .grayRightTopFirst span {
+    margin-bottom: 10px;
+}
+
+.mypage .grayWrapper .grayRightTopFirst .linkStyle {
+    color: #000; /* $color-main 대체 */
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.mypage .grayWrapper .grayRightTopSecond {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 280px;
+    height: 140px;
+    margin: 5px;
+    padding-left: 30px;
+    background-color: white;
+    font-size: 18px;
+}
+
+.mypage .grayWrapper .grayRightTopSecond span {
+    margin-bottom: 10px;
+}
+
+.mypage .grayWrapper .grayRightTopSecond .linkStyle {
+    color: #000; /* $color-main 대체 */
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.mypage .grayWrapper .grayRightThird {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 565px;
+    height: 55px;
+    margin-bottom: 5px;
+    padding: 0px 30px;
+    background-color: white;
+}
+
+.mypage .grayWrapper .grayRightThird .linkStyle {
+    color: #000; /* $color-main 대체 */
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.mypage .whiteWrapper {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.mypage .whiteWrapper .whiteInner {
+    display: flex;
+    justify-content: flex-start;
+    height: 80vh;
+}
+
+.mypage .whiteWrapper .whiteInner .whiteLeft {
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+
+.mypage .whiteWrapper .whiteInner .whiteLeft .title {
+    color: #000; /* $color-main 대체 */
+    font-size: 25px;
+}
+
+.mypage .whiteWrapper .whiteInner .whiteLeft .boxList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mypage .whiteWrapper .whiteInner .whiteLeft .boxList .boxLists {
+    padding: 10px;
+    border: 1px solid #000; /* $color-main 대체 */
+    color: #000; /* $color-main 대체 */
+    font-size: 16px;
+}
+
+.mypage .whiteWrapper .whiteInner .whiteRight {
+    width: 800px;
+}
+
+.mypage .whiteWrapper .whiteInner .whiteRight .orderStatus {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #000; /* $color-main 대체 */
+}
+
+.mypage .whiteWrapper .whiteInner .whiteRight .orderStatus p {
+    color: #000; /* $color-main 대체 */
+    font-size: 25px;
+}
+
+.mypage .whiteWrapper .whiteInner .whiteRight .orderStatus button {
+    width: 170px;
+    height: 47px;
+    border: 1px solid #000; /* $color-main 대체 */
+    border-radius: 5px;
+    background-color: rgba(143, 116, 87, 0.131);
+    color: #000; /* $color-main 대체 */
+}

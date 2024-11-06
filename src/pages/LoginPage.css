@@ -1,0 +1,83 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 0px 130px;
+}
+
+.login .loginTitle {
+    padding-bottom: 50px;
+    color: #333; /* $color-main 대체 */
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.login .loginBox {
+    width: 400px;
+    height: 60px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+
+.login .loginBox::placeholder {
+    color: #dddddd;
+}
+
+.login .checkId {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    margin: 15px 0px;
+    gap: 10px;
+    color: #dddddd;
+    font-size: 13px;
+}
+
+.login .checkId .checkBtn {
+    width: 23px;
+    height: 23px;
+}
+
+.login .checkId .checkIdSave {
+    color: #333; /* $color-main 대체 */
+}
+
+.login .btnLogin {
+    width: 400px;
+    height: 60px;
+    margin-top: 15px;
+    border: 1px solid #333; /* $color-main 대체 */
+    border-radius: 5px;
+    background-color: #333; /* $color-main 대체 */
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login .btnSignup {
+    width: 400px;
+    height: 60px;
+    margin-top: 15px;
+    border: 1px solid #333; /* $color-main 대체 */
+    border-radius: 5px;
+    background-color: white;
+    color: #333; /* $color-main 대체 */
+    font-size: 14px;
+}
+
+.login .memberFind {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.login .memberFind .colorWhite {
+    color: #dddddd;
+}
+
+.login .memberFind .margin30 {
+    margin-right: 30px;
+}

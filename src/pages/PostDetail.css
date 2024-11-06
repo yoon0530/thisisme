@@ -1,0 +1,35 @@
+.post-detail-container {
+    width: 600px;
+    margin: auto;
+    text-align: left;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.edit-button, .delete-button, .back-button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+    margin-left: 10px;
+}
+
+.back-button {
+    margin-left: 10px;
+}
