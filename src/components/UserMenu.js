@@ -29,9 +29,6 @@ function UserMenu({ isLoggedIn, onLogout }) {
             </button>
             {isOpen && (
                 <ul className={styles.popup}>
-                    <Link to="/wishlist" onClick={handleMenuItemClick}>
-                        <li>위시리스트</li>
-                    </Link>
                     {/* 로그인 상태에 따라 조건부 렌더링 */}
                     {!isLoggedIn ? (
                         <>
@@ -44,6 +41,9 @@ function UserMenu({ isLoggedIn, onLogout }) {
                         </>
                     ) : (
                         <>
+                            <Link to="/wishlist" onClick={handleMenuItemClick}>
+                                <li>위시리스트</li>
+                            </Link>
                             <Link to="/mypage" onClick={handleMenuItemClick}>
                                 <li>마이페이지</li>
                             </Link>

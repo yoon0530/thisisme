@@ -59,34 +59,5 @@
       "date": "2024-11-06T00:48:23.962Z"
     }
   ],
-  "users": [
-    {
-      "id": "1",
-      "email": "example@example.com",
-      "password": "password123",
-      "name": "John Doe",
-      "phoneNumber": "010-1234-5678"
-    },
-    {
-      "id": "0f4f",
-      "email": "1",
-      "password": "1",
-      "name": "1",
-      "phoneNumber": "1"
-    },
-    {
-      "id": "03c2",
-      "email": "1",
-      "password": "1",
-      "name": "1",
-      "phoneNumber": "1"
-    },
-    {
-      "id": "9a9d",
-      "email": "yoon0530@naver.com",
-      "password": "1234",
-      "name": "이윤철",
-      "phoneNumber": "01090825452"
-    }
-  ]
+  "users": []
 }

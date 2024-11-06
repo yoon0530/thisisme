@@ -3,46 +3,37 @@ import { Link, useNavigate, Outlet, useLocation } from 'react-router-dom';
 import './MyPage.css';
 import axios from 'axios';
 
-function Mypage({ parsed }) {
+function Mypage({ parsed, onLogout }) {
     const [recentlyViewed, setRecentlyViewed] = useState([]);
     const [showRecentlyViewed, setShowRecentlyViewed] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
 
-    // 예시 도전 목록 - 실제 데이터는 API로 가져올 수 있습니다)
-    const challenges = [
-        { id: 1, title: '도전 1' },
-        { id: 2, title: '도전 2' },
-        { id: 3, title: '도전 3' },
-    ];
-
-    const handleViewChallenge = (challenge) => {
-        setRecentlyViewed((prev) => [...prev, challenge]);
-    };
-
-    const toggleRecentlyViewed = () => {
-        setShowRecentlyViewed(!showRecentlyViewed);
-    };
-
-    const handleDeleteProfile = (e) => {
+    const handleDeleteProfile = async (e) => {
         e.preventDefault();
 
+        if (!parsed || !parsed.id) {
+            alert("유효한 사용자 정보가 없습니다.");
+            return;
+        }
+
         if (window.confirm('정말로 탈퇴하시겠습니까?')) {
-            axios
-                .delete(
-                    // `${process.env.REACT_APP_PROXY_URL}/members/${parsed.memberId}`,
-                    // {
-                    //   headers: {
-                    //     Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
-                    //   },
-                    // }
-                )
-                .then(() => {
-                    localStorage.clear();
+            try {
+                console.log("Deleting user with ID:", parsed.id);
+                const response = await axios.delete(`http://localhost:5000/users/${parsed.id}`);
+
+                if (response.status === 200 || response.status === 204) {
+                    onLogout(false); // handleLogout 호출 시 alert 표시 안 함
                     alert('그동안 이용해주셔서 감사합니다.');
                     navigate('/');
-                })
-                .catch((err) => alert(/*err.response.data.message*/));
+                } else {
+                    console.error("회원탈퇴 실패:", response.status);
+                    alert("회원탈퇴에 실패했습니다. 다시 시도해주세요.");
+                }
+            } catch (err) {
+                console.error("회원탈퇴 중 오류 발생:", err);
+                alert("회원탈퇴에 실패했습니다. 다시 시도해주세요.");
+            }
         }
     };
 
@@ -50,7 +41,6 @@ function Mypage({ parsed }) {
     const isSubRoute = location.pathname !== '/mypage';
 
     if (isSubRoute) {
-        // 중첩 라우트가 활성화되면 `Outlet`만 렌더링
         return <Outlet />;
     }
 
@@ -61,7 +51,7 @@ function Mypage({ parsed }) {
                     <p>
                         안녕하세요
                         <br />
-                        오늘도 <span className="textBrown">도전 </span> 하는당신 <br />정말 멋지네요 .
+                        오늘도 <span className="textBrown">도전 </span> 하는 당신 <br />정말 멋지네요.
                     </p>
                     <button className="buttonStyle">SIMPLE 회원</button>
                 </div>
@@ -73,7 +63,7 @@ function Mypage({ parsed }) {
                                 0원
                             </Link>
                         </div>
-                        <div className="grayRightTopSecond" to="#">
+                        <div className="grayRightTopSecond">
                             <span>포인트 충전 / 환전</span>
                             <button onClick={() => navigate('/mypage/pointrecharge')}>충전하기</button>
                             <button onClick={() => navigate('/mypage/pointexchange')}>환전하기</button>
@@ -93,7 +83,7 @@ function Mypage({ parsed }) {
                         <p className="title">마이페이지</p>
                         <div className="boxList">
                             <button>정보수정</button>
-                            <button onClick={toggleRecentlyViewed}>최근 본 도전</button>
+                            <button>최근 본 도전</button>
                             <button onClick={() => navigate('/mypage/pointhistory')}>포인트 내역 확인</button>
                             <button>고객센터</button>
                             <button onClick={handleDeleteProfile}>회원탈퇴</button>

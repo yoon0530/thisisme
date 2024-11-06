@@ -20,7 +20,7 @@ const LoginPage = ({ onLogin }) => {
     const loginClick = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/users'); // db.json에서 users 데이터 가져오기
+            const response = await fetch('http://localhost:5000/users');
 
             if (!response.ok) {
                 throw new Error('데이터를 가져오는 데 실패했습니다.');
@@ -32,12 +32,12 @@ const LoginPage = ({ onLogin }) => {
             );
 
             if (user) {
-                // 로그인 성공 시 사용자 이름과 모의 토큰을 로컬 스토리지에 저장
-                localStorage.setItem('userName', user.name); // 사용자 이름 저장
+                // 전체 사용자 정보를 로컬 스토리지에 저장
+                localStorage.setItem('user', JSON.stringify(user)); // 전체 user 객체 저장
                 localStorage.setItem('Token', 'mockAccessToken'); // 모의 토큰 설정
 
-                // 부모 컴포넌트에 로그인 성공 알림
-                if (onLogin) onLogin(user.name);
+                // 부모 컴포넌트에 전체 user 객체 전달
+                if (onLogin) onLogin(user);
 
                 // 로그인 상태 변경을 감지하도록 이벤트 트리거
                 window.dispatchEvent(new Event("storage"));

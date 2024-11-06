@@ -19,33 +19,38 @@ import EditPost from "./pages/EditPost";
 function App() {
     const [userName, setUserName] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [parsed, setParsed] = useState(null); // 사용자 정보 저장하는 상태 추가
 
-    // 페이지 새로고침 시 로컬 스토리지에서 로그인 상태 복원
     useEffect(() => {
-        const storedUserName = localStorage.getItem("userName");
+        const storedUser = localStorage.getItem("user");
         const storedIsLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
-        if (storedUserName && storedIsLoggedIn) {
-            setUserName(storedUserName);
+        if (storedUser && storedIsLoggedIn) {
+            const user = JSON.parse(storedUser);
+            setParsed(user); // parsed에 사용자 정보 설정
+            setUserName(user.name);
             setIsLoggedIn(true);
         }
     }, []);
 
     // 로그인 핸들러
-    const handleLogin = (name) => {
+    const handleLogin = (user) => {
         setIsLoggedIn(true);
-        setUserName(name);
+        setUserName(user.name);
+        setParsed(user); // 로그인 시 parsed 설정
         localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("userName", name);
+        localStorage.setItem("user", JSON.stringify(user)); // 사용자 정보 전체를 로컬 스토리지에 저장
     };
 
-    // 로그아웃 핸들러
-    const handleLogout = () => {
+    // 로그아웃 핸들러, showAlert로 로그아웃 알림 메시지 표시 선택
+    const handleLogout = (showAlert = true) => {
         setIsLoggedIn(false);
         setUserName('');
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("userName");
-        alert("로그아웃되었습니다.");
+        setParsed(null); // 로그아웃 시 parsed 초기화
+        localStorage.clear();
+        if (showAlert) {
+            alert("로그아웃되었습니다.");
+        }
     };
 
     return (
@@ -60,7 +65,7 @@ function App() {
                     <Route path="/write" element={<WritePost userName={userName} />} />
                     <Route path="/post/:id" element={<PostDetail userName={userName} />} />
                     <Route path="/edit/:id" element={<EditPost />} />
-                    <Route path="/mypage" element={<PrivateRoute isLoggedIn={isLoggedIn}><MyPage /></PrivateRoute>}>
+                    <Route path="/mypage" element={<PrivateRoute isLoggedIn={isLoggedIn}><MyPage parsed={parsed} onLogout={() => handleLogout(false)} /></PrivateRoute>}>
                         <Route path="pointhistory" element={<PointHistory />} />
                         <Route path="pointexchange" element={<PointExchange />} />
                         <Route path="pointrecharge" element={<PointRecharge />} />
