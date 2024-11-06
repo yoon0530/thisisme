@@ -32,12 +32,25 @@ const SignupPage = () => {
         }
 
         try {
+            // 중복 이메일 확인을 위해 JSON Server의 모든 사용자 데이터 가져오기
+            const usersResponse = await axios.get('http://localhost:5000/users');
+            const existingUser = usersResponse.data.find(
+                user => user.email === signupInfo.email
+            );
+
+            if (existingUser) {
+                alert('이미 존재하는 이메일입니다.');
+                return;
+            }
+
+            // 이메일이 중복되지 않으면 회원가입 진행
             const response = await axios.post('http://localhost:5000/users', {
                 email: signupInfo.email,
                 password: signupInfo.password,
                 name: signupInfo.name,
                 phoneNumber: signupInfo.phone,
             });
+
             console.log('응답:', response.data);
             alert('회원가입 되었습니다!');
             navigate('/login');

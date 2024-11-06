@@ -19,7 +19,7 @@ import EditPost from "./pages/EditPost";
 function App() {
     const [userName, setUserName] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [parsed, setParsed] = useState(null); // 사용자 정보 저장하는 상태 추가
+    const [parsed, setParsed] = useState(null);
 
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
@@ -27,26 +27,24 @@ function App() {
 
         if (storedUser && storedIsLoggedIn) {
             const user = JSON.parse(storedUser);
-            setParsed(user); // parsed에 사용자 정보 설정
+            setParsed(user);
             setUserName(user.name);
             setIsLoggedIn(true);
         }
     }, []);
 
-    // 로그인 핸들러
     const handleLogin = (user) => {
         setIsLoggedIn(true);
         setUserName(user.name);
-        setParsed(user); // 로그인 시 parsed 설정
+        setParsed(user);
         localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("user", JSON.stringify(user)); // 사용자 정보 전체를 로컬 스토리지에 저장
+        localStorage.setItem("user", JSON.stringify(user));
     };
 
-    // 로그아웃 핸들러, showAlert로 로그아웃 알림 메시지 표시 선택
     const handleLogout = (showAlert = true) => {
         setIsLoggedIn(false);
         setUserName('');
-        setParsed(null); // 로그아웃 시 parsed 초기화
+        setParsed(null);
         localStorage.clear();
         if (showAlert) {
             alert("로그아웃되었습니다.");
@@ -61,10 +59,14 @@ function App() {
                     <Route path="/" element={<><HomePage /><Footer className={styles.footer} /></>} />
                     <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
                     <Route path="/signup" element={<><SignupPage /><Footer className={styles.footer} /></>} />
-                    <Route path="/freeboard" element={<FreeBoard />} />
-                    <Route path="/write" element={<WritePost userName={userName} />} />
-                    <Route path="/post/:id" element={<PostDetail userName={userName} />} />
-                    <Route path="/edit/:id" element={<EditPost />} />
+
+                    {/* 보호된 라우트 설정 */}
+                    <Route path="/freeboard" element={<PrivateRoute isLoggedIn={isLoggedIn}><FreeBoard /></PrivateRoute>} />
+                    <Route path="/write" element={<PrivateRoute isLoggedIn={isLoggedIn}><WritePost userName={userName} /></PrivateRoute>} />
+                    <Route path="/post/:id" element={<PrivateRoute isLoggedIn={isLoggedIn}><PostDetail userName={userName} /></PrivateRoute>} />
+                    <Route path="/edit/:id" element={<PrivateRoute isLoggedIn={isLoggedIn}><EditPost /></PrivateRoute>} />
+
+                    {/* 마이페이지와 관련된 보호된 경로 */}
                     <Route path="/mypage" element={<PrivateRoute isLoggedIn={isLoggedIn}><MyPage parsed={parsed} onLogout={() => handleLogout(false)} /></PrivateRoute>}>
                         <Route path="pointhistory" element={<PointHistory />} />
                         <Route path="pointexchange" element={<PointExchange />} />
