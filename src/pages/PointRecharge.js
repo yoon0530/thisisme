@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './PointRecharge.css'; // CSS 파일을 임포트합니다.
+import './PointRecharge.module.css'; // CSS 파일을 임포트합니다.
 
 const PointRecharge = () => {
     const [accountNumber, setAccountNumber] = useState('');

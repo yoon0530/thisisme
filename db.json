@@ -29,18 +29,6 @@
       "title": "5",
       "content": "5",
       "author": "1"
-    },
-    {
-      "id": "cadb",
-      "title": "6",
-      "content": "6",
-      "author": "1"
-    },
-    {
-      "id": "7ca8",
-      "title": "7",
-      "content": "7",
-      "author": "1"
     }
   ],
   "points": [
@@ -85,7 +73,7 @@
       "accountNumber": "kookmin",
       "amount": 21321412,
       "date": "2024-11-06T07:20:18.404Z",
-      "userId": "bd99"
+      "userId": null
     }
   ],
   "exchanges": [
@@ -130,16 +118,8 @@
       "bank": "카카오뱅크",
       "points": 1112312,
       "date": "2024-11-06T07:18:03.581Z",
-      "userId": "bd99"
+      "userId": null
     }
   ],
-  "users": [
-    {
-      "id": "bd99",
-      "email": "1",
-      "password": "1",
-      "name": "1",
-      "phoneNumber": "1"
-    }
-  ]
+  "users": []
 }
