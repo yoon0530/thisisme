@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './PointExchange.css'; // CSS 파일을 임포트합니다.
 
 const PointExchange = () => {
     const [bank, setBank] = useState('');
@@ -8,7 +9,6 @@ const PointExchange = () => {
 
     const handlePointsChange = (e) => {
         const value = e.target.value;
-        // 숫자만 허용
         if (/^\d*$/.test(value)) {
             setPoints(value);
         }
@@ -17,19 +17,22 @@ const PointExchange = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // 포인트 환전 로직
+        // 로그인한 사용자 정보에서 ID를 가져옵니다.
+        const user = JSON.parse(localStorage.getItem('user'));
+        const userId = user?.id; // user 객체가 존재할 경우 id를 가져옵니다.
+
         const data = {
             bank,
-            points: parseInt(points, 10), // 문자열을 정수로 변환
-            date: new Date().toISOString() // 환전 날짜 추가
+            points: parseInt(points, 10),
+            date: new Date().toISOString(),
+            userId  // 로그인한 사용자 ID를 포함합니다.
         };
 
         try {
-            const response = await axios.post('http://localhost:5000/exchanges', data); // JSON Server API 주소
+            const response = await axios.post('http://localhost:5000/exchanges', data);
             console.log('응답:', response.data);
             setMessage('포인트 환전이 성공적으로 완료되었습니다.');
 
-            // 성공적으로 전송된 후 입력값 초기화
             setBank('');
             setPoints('');
         } catch (error) {
@@ -39,23 +42,27 @@ const PointExchange = () => {
     };
 
     return (
-        <div style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '5px' }}>
-            <h2>포인트 환전</h2>
-            {message && <p>{message}</p>}
+        <div className="container">
+            <h2 className="heading">포인트 환전</h2>
+            {message && <p className="message">{message}</p>}
             <form onSubmit={handleSubmit}>
-                <div style={{ marginBottom: '10px' }}>
-                    <label>
+                <div className="form-group">
+                    <label className="label">
                         나의 계좌:
-                        <select value={bank} onChange={(e) => setBank(e.target.value)} style={{ marginLeft: '10px' }}>
+                        <select
+                            value={bank}
+                            onChange={(e) => setBank(e.target.value)}
+                            className="select"
+                        >
                             <option value="">은행 선택</option>
                             <option value="카카오뱅크">카카오뱅크</option>
                             <option value="토스">토스</option>
-                            <option value="기타">등등</option>
+                            <option value="기타">기타</option>
                         </select>
                     </label>
                 </div>
-                <div style={{ marginBottom: '10px' }}>
-                    <label>
+                <div className="form-group">
+                    <label className="label">
                         금액:
                         <input
                             type="text"
@@ -63,12 +70,12 @@ const PointExchange = () => {
                             onChange={handlePointsChange}
                             placeholder="환전할 포인트 입력"
                             required
-                            style={{ marginLeft: '10px', width: '100px' }}
+                            className="input"
                         />
                     </label>
                 </div>
-                <p>* 예금주가 동일해야 합니다.</p>
-                <button type="submit">신청</button>
+                <p className="note">* 예금주가 동일해야 합니다.</p>
+                <button type="submit" className="button">신청</button>
             </form>
         </div>
     );

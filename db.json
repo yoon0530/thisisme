@@ -5,6 +5,42 @@
       "title": "1",
       "content": "1",
       "author": "Anonymous"
+    },
+    {
+      "id": "02f8",
+      "title": "2",
+      "content": "2",
+      "author": "1"
+    },
+    {
+      "id": "f5c7",
+      "title": "3",
+      "content": "3",
+      "author": "1"
+    },
+    {
+      "id": "4d86",
+      "title": "4",
+      "content": "4",
+      "author": "1"
+    },
+    {
+      "id": "57e4",
+      "title": "5",
+      "content": "5",
+      "author": "1"
+    },
+    {
+      "id": "cadb",
+      "title": "6",
+      "content": "6",
+      "author": "1"
+    },
+    {
+      "id": "7ca8",
+      "title": "7",
+      "content": "7",
+      "author": "1"
     }
   ],
   "points": [
@@ -37,6 +73,19 @@
       "accountNumber": "kakao",
       "amount": 12222,
       "date": "2024-11-04T14:24:38.047Z"
+    },
+    {
+      "id": "99da",
+      "accountNumber": "kakao",
+      "amount": 111,
+      "date": "2024-11-06T07:11:37.016Z"
+    },
+    {
+      "id": "f976",
+      "accountNumber": "kookmin",
+      "amount": 21321412,
+      "date": "2024-11-06T07:20:18.404Z",
+      "userId": "bd99"
     }
   ],
   "exchanges": [
@@ -57,7 +106,40 @@
       "bank": "",
       "points": 1111,
       "date": "2024-11-06T00:48:23.962Z"
+    },
+    {
+      "id": "deea",
+      "bank": "카카오뱅크",
+      "points": 111,
+      "date": "2024-11-06T07:11:42.531Z"
+    },
+    {
+      "id": "4365",
+      "bank": "카카오뱅크",
+      "points": 1234,
+      "date": "2024-11-06T07:12:45.529Z"
+    },
+    {
+      "id": "be31",
+      "bank": "카카오뱅크",
+      "points": 11241,
+      "date": "2024-11-06T07:13:29.089Z"
+    },
+    {
+      "id": "e953",
+      "bank": "카카오뱅크",
+      "points": 1112312,
+      "date": "2024-11-06T07:18:03.581Z",
+      "userId": "bd99"
     }
   ],
-  "users": []
+  "users": [
+    {
+      "id": "bd99",
+      "email": "1",
+      "password": "1",
+      "name": "1",
+      "phoneNumber": "1"
+    }
+  ]
 }
