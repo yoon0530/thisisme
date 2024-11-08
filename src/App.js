@@ -1,3 +1,4 @@
+// App.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -19,7 +20,8 @@ import EditPost from "./pages/EditPost";
 import CoursesPage from "./pages/CoursesPage";
 import CourseDetail from "./pages/CourseDetail";
 import CreateCoursePage from "./pages/CreateCoursePage";
-import MyChallenge from "./pages/MyChallenge"; // courses 목록을 표시할 컴포넌트
+import MyChallenge from "./pages/MyChallenge";
+import CompletedChallenges from "./pages/CompletedChallenges";
 
 function App() {
     const [userName, setUserName] = useState('');
@@ -28,7 +30,6 @@ function App() {
     const [courses, setCourses] = useState([]); // courses 데이터를 위한 상태 추가
 
     useEffect(() => {
-        // 로컬 스토리지에서 로그인 상태 복원
         const storedUser = localStorage.getItem("user");
         const storedIsLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
@@ -39,7 +40,6 @@ function App() {
             setIsLoggedIn(true);
         }
 
-        // 서버에서 courses 데이터 가져오기
         const fetchCourses = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/course');
@@ -94,6 +94,9 @@ function App() {
                         <Route path="pointexchange" element={<PointExchange />} />
                         <Route path="pointrecharge" element={<PointRecharge />} />
                     </Route>
+
+                    {/* 종료된 도전 페이지 라우트 추가 */}
+                    <Route path="/completedchallenges" element={<PrivateRoute isLoggedIn={isLoggedIn}><CompletedChallenges /></PrivateRoute>} />
                 </Routes>
             </div>
             <Footer className={styles.footer} />
