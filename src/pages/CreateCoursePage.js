@@ -1,7 +1,9 @@
+// CreateCoursePage.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CreateCoursePage.css';
+import CheckCourseStatus from '../components/CheckCourseStatus';
 
 const CreateCoursePage = () => {
     const navigate = useNavigate();
@@ -12,11 +14,11 @@ const CreateCoursePage = () => {
         professor: '',
         location: '',
         startDate: '',
-        endDate: '',
+        duration: '',
         category: '',
         description: ''
     });
-    const [isSubmitting, setIsSubmitting] = useState(false); // 로딩 상태 추가
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,20 +28,23 @@ const CreateCoursePage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // 중복 제출 방지
         if (isSubmitting) return;
+        setIsSubmitting(true);
 
-        setIsSubmitting(true); // 제출 상태 설정
-
-        // 사용자 정보 가져오기
         const loggedInUser = JSON.parse(localStorage.getItem('user'));
 
-        // 새로운 도전 데이터 생성, 사용자 정보 포함
+        // 종료 날짜를 시작 날짜와 선택한 기간을 기준으로 계산
+        const endDate = courseData.duration === "7"
+            ? new Date(new Date(courseData.startDate).setDate(new Date(courseData.startDate).getDate() + 7))
+            : new Date(new Date(courseData.startDate).setDate(new Date(courseData.startDate).getDate() + 30));
+
         const newCourse = {
             id: Date.now().toString(),
             ...courseData,
             authorId: loggedInUser?.id,
-            authorName: loggedInUser?.name
+            authorName: loggedInUser?.name,
+            endDate: endDate.toISOString().split("T")[0], // 종료 날짜 설정
+            status: 'pending' // 기본 상태
         };
 
         try {
@@ -50,12 +55,16 @@ const CreateCoursePage = () => {
             console.error('도전 생성 중 오류 발생:', error);
             alert('도전 생성에 실패했습니다.');
         } finally {
-            setIsSubmitting(false); // 제출 완료 후 상태 초기화
+            setIsSubmitting(false);
         }
     };
 
+    // 오늘 날짜를 YYYY-MM-DD 형식으로 설정
+    const today = new Date().toISOString().split("T")[0];
+
     return (
         <div className="create-course-page">
+            <CheckCourseStatus /> {/* 상태 확인을 위한 컴포넌트 렌더링 */}
             <h2>도전 생성</h2>
             <form onSubmit={handleSubmit} className="create-course-form">
                 <label>
@@ -80,11 +89,22 @@ const CreateCoursePage = () => {
                 </label>
                 <label>
                     시작 날짜:
-                    <input type="date" name="startDate" value={courseData.startDate} onChange={handleChange} required />
+                    <input
+                        type="date"
+                        name="startDate"
+                        value={courseData.startDate}
+                        onChange={handleChange}
+                        min={today} // 오늘 날짜 이후로만 선택 가능
+                        required
+                    />
                 </label>
                 <label>
-                    종료 날짜:
-                    <input type="date" name="endDate" value={courseData.endDate} onChange={handleChange} required />
+                    기간:
+                    <select name="duration" value={courseData.duration} onChange={handleChange} required>
+                        <option value="">선택해주세요</option>
+                        <option value="7">7일</option>
+                        <option value="30">30일</option>
+                    </select>
                 </label>
                 <label>
                     카테고리:
