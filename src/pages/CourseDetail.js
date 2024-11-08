@@ -1,12 +1,15 @@
+// CourseDetail.js
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CourseDetail.css';
+import CheckCourseStatus from '../components/CheckCourseStatus';
 
 const CourseDetail = () => {
     const { courseId } = useParams();
     const [course, setCourse] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [status, setStatus] = useState(""); // 상태를 저장할 state 추가
     const navigate = useNavigate();
     const [isAuthor, setIsAuthor] = useState(false);
     const [isEnrolled, setIsEnrolled] = useState(false);
@@ -54,7 +57,6 @@ const CourseDetail = () => {
         }
 
         try {
-            // `PATCH` 요청으로 `enrolledUsers` 배열에 사용자 ID 추가
             await axios.patch(`http://localhost:5000/course/${courseId}`, {
                 enrolledUsers: [...(course.enrolledUsers || []), loggedInUser.id]
             });
@@ -79,12 +81,17 @@ const CourseDetail = () => {
             <p><strong>강의 기간:</strong> {course.startDate} - {course.endDate}</p>
             <p><strong>카테고리:</strong> {course.category}</p>
             <p><strong>설명:</strong> {course.description}</p>
+            <p><strong>현재 상태:</strong> <CheckCourseStatus courseId={courseId} onStatusChange={setStatus} /></p> {/* 상태 표시 */}
             {isAuthor && (
                 <button onClick={handleDelete} className="delete-button">삭제</button>
             )}
-            <button onClick={handleEnroll} className="enroll-button" disabled={isEnrolled}>
-                    {isEnrolled ? "신청 완료" : "신청"}
-                </button>
+            <button
+                onClick={handleEnroll}
+                className="enroll-button"
+                disabled={isEnrolled || status !== "대기 중"} // 대기 중이 아닐 때 비활성화
+            >
+                {isEnrolled ? "신청 완료" : (status === "대기 중" ? "신청" : "신청 불가")}
+            </button>
         </div>
     );
 };
