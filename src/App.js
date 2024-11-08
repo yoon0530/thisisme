@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -15,13 +16,19 @@ import FreeBoard from "./pages/FreeBoard";
 import PostDetail from "./pages/PostDetail";
 import WritePost from "./pages/WritePost";
 import EditPost from "./pages/EditPost";
+import CoursesPage from "./pages/CoursesPage";
+import CourseDetail from "./pages/CourseDetail";
+import CreateCoursePage from "./pages/CreateCoursePage";
+import MyChallenge from "./pages/MyChallenge"; // courses 목록을 표시할 컴포넌트
 
 function App() {
     const [userName, setUserName] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [parsed, setParsed] = useState(null);
+    const [courses, setCourses] = useState([]); // courses 데이터를 위한 상태 추가
 
     useEffect(() => {
+        // 로컬 스토리지에서 로그인 상태 복원
         const storedUser = localStorage.getItem("user");
         const storedIsLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
@@ -31,6 +38,18 @@ function App() {
             setUserName(user.name);
             setIsLoggedIn(true);
         }
+
+        // 서버에서 courses 데이터 가져오기
+        const fetchCourses = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/course');
+                setCourses(response.data);
+            } catch (error) {
+                console.error("Error fetching courses data:", error);
+            }
+        };
+
+        fetchCourses();
     }, []);
 
     const handleLogin = (user) => {
@@ -59,7 +78,10 @@ function App() {
                     <Route path="/" element={<><HomePage /><Footer className={styles.footer} /></>} />
                     <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
                     <Route path="/signup" element={<><SignupPage /><Footer className={styles.footer} /></>} />
-
+                    <Route path="/course" element={<CoursesPage courses={courses} />} />
+                    <Route path="/course/:courseId" element={<CourseDetail />} />
+                    <Route path="/create-course" element={<CreateCoursePage />} />
+                    <Route path="/my-challenge" element={<MyChallenge />} />
                     {/* 보호된 라우트 설정 */}
                     <Route path="/freeboard" element={<PrivateRoute isLoggedIn={isLoggedIn}><FreeBoard /></PrivateRoute>} />
                     <Route path="/write" element={<PrivateRoute isLoggedIn={isLoggedIn}><WritePost userName={userName} /></PrivateRoute>} />

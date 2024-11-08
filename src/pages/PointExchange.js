@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './PointExchange.module.css'; // CSS 파일을 임포트합니다.
+import styles from './PointExchange.module.css'; // styles로 import합니다.
 
 const PointExchange = () => {
     const [bank, setBank] = useState('');
@@ -42,17 +42,17 @@ const PointExchange = () => {
     };
 
     return (
-        <div className="container">
-            <h2 className="heading">포인트 환전</h2>
-            {message && <p className="message">{message}</p>}
+        <div className={styles.container}>
+            <h2 className={styles.heading}>포인트 환전</h2>
+            {message && <p className={styles.message}>{message}</p>}
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label className="label">
+                <div className={styles.formGroup}>
+                    <label className={styles.label}>
                         나의 계좌:
                         <select
                             value={bank}
                             onChange={(e) => setBank(e.target.value)}
-                            className="select"
+                            className={styles.select}
                         >
                             <option value="">은행 선택</option>
                             <option value="카카오뱅크">카카오뱅크</option>
@@ -61,8 +61,8 @@ const PointExchange = () => {
                         </select>
                     </label>
                 </div>
-                <div className="form-group">
-                    <label className="label">
+                <div className={styles.formGroup}>
+                    <label className={styles.label}>
                         금액:
                         <input
                             type="text"
@@ -70,12 +70,12 @@ const PointExchange = () => {
                             onChange={handlePointsChange}
                             placeholder="환전할 포인트 입력"
                             required
-                            className="input"
+                            className={styles.input}
                         />
                     </label>
                 </div>
-                <p className="note">* 예금주가 동일해야 합니다.</p>
-                <button type="submit" className="button">신청</button>
+                <p className={styles.note}>* 예금주가 동일해야 합니다.</p>
+                <button type="submit" className={styles.button}>신청</button>
             </form>
         </div>
     );

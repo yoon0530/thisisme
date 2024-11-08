@@ -41,8 +41,8 @@ function UserMenu({ isLoggedIn, onLogout }) {
                         </>
                     ) : (
                         <>
-                            <Link to="/wishlist" onClick={handleMenuItemClick}>
-                                <li>위시리스트</li>
+                            <Link to="/my-challenge" onClick={handleMenuItemClick}>
+                                <li>나의 도전</li>
                             </Link>
                             <Link to="/mypage" onClick={handleMenuItemClick}>
                                 <li>마이페이지</li>

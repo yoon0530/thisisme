@@ -1,0 +1,73 @@
+.courses-page {
+    padding: 20px;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, 1fr); /* 가로로 4개의 열을 강제 설정 */
+    gap: 16px;
+}
+
+.course-card {
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #3f51b5;
+    color: #fff;
+}
+
+.course-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.course-dates,
+.course-title,
+.course-professor,
+.course-category {
+    margin: 8px 0;
+}
+
+.course-progress {
+    font-size: 1rem;
+}
+.courses-page {
+    position: relative;
+    padding: 20px;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.course-card {
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #3f51b5;
+    color: #fff;
+}
+
+.create-challenge-button {
+    position: fixed; /* 우측 하단에 고정 */
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.create-challenge-button:hover {
+    background-color: #e64a19;
+}

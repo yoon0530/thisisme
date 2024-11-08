@@ -1,0 +1,32 @@
+.create-course-page {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.create-course-form label {
+    display: block;
+    margin: 10px 0;
+}
+
+.create-course-form input,
+.create-course-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.create-course-form button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.create-course-form button:hover {
+    background-color: #303f9f;
+}

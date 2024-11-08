@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, Outlet, useLocation } from 'react-router-dom';
 import './MyPage.css';
 import axios from 'axios';
@@ -6,8 +6,23 @@ import axios from 'axios';
 function Mypage({ parsed, onLogout }) {
     const [recentlyViewed, setRecentlyViewed] = useState([]);
     const [showRecentlyViewed, setShowRecentlyViewed] = useState(false);
+    const [inProgressChallenges, setInProgressChallenges] = useState([]); // 진행 중인 도전 목록
     const navigate = useNavigate();
     const location = useLocation();
+
+    useEffect(() => {
+        // 진행 중인 도전 목록을 서버에서 가져오는 함수
+        const fetchInProgressChallenges = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/inProgressChallenges');
+                setInProgressChallenges(response.data);
+            } catch (error) {
+                console.error("진행 중인 도전을 불러오는 중 오류 발생:", error);
+            }
+        };
+
+        fetchInProgressChallenges();
+    }, []);
 
     const handleDeleteProfile = async (e) => {
         e.preventDefault();
@@ -96,7 +111,17 @@ function Mypage({ parsed, onLogout }) {
                             </p>
                             <button>지난 도전</button>
                         </div>
-                        <div className="blankPage" />
+                        <div className="inProgressChallenges">
+                            {inProgressChallenges.length > 0 ? (
+                                inProgressChallenges.map((challenge) => (
+                                    <div key={challenge.id} className="challengeItem">
+                                        <p>{challenge.title}</p>
+                                    </div>
+                                ))
+                            ) : (
+                                <p>현재 진행 중인 도전이 없습니다.</p>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

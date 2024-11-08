@@ -19,7 +19,7 @@ function Nav({ isLoggedIn, onLogout }) {
                 </Link>
                 <ul className={styles.menu}>
                     <li>
-                        <NavLink style={getLinkStyle} to="/challenge">
+                        <NavLink style={getLinkStyle} to="/course">
                             도전
                         </NavLink>
                     </li>

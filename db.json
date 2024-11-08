@@ -7,27 +7,9 @@
       "author": "Anonymous"
     },
     {
-      "id": "02f8",
-      "title": "2",
-      "content": "2",
-      "author": "1"
-    },
-    {
-      "id": "f5c7",
-      "title": "3",
-      "content": "3",
-      "author": "1"
-    },
-    {
-      "id": "4d86",
-      "title": "4",
-      "content": "4",
-      "author": "1"
-    },
-    {
-      "id": "57e4",
-      "title": "5",
-      "content": "5",
+      "id": "83a2",
+      "title": "13",
+      "content": "615",
       "author": "1"
     }
   ],
@@ -57,23 +39,11 @@
       "date": "2023-01-01T12:00:00.000Z"
     },
     {
-      "id": "f04d",
+      "id": "b5e4",
       "accountNumber": "kakao",
-      "amount": 12222,
-      "date": "2024-11-04T14:24:38.047Z"
-    },
-    {
-      "id": "99da",
-      "accountNumber": "kakao",
-      "amount": 111,
-      "date": "2024-11-06T07:11:37.016Z"
-    },
-    {
-      "id": "f976",
-      "accountNumber": "kookmin",
-      "amount": 21321412,
-      "date": "2024-11-06T07:20:18.404Z",
-      "userId": null
+      "amount": 1.111111111111111e+38,
+      "date": "2024-11-07T10:20:05.940Z",
+      "userId": "c4b9"
     }
   ],
   "exchanges": [
@@ -82,44 +52,44 @@
       "bank": "카카오뱅크",
       "points": 50000,
       "date": "2023-01-01T12:00:00.000Z"
-    },
-    {
-      "id": "6c8a",
-      "bank": "카카오뱅크",
-      "points": 11111,
-      "date": "2024-11-04T14:26:31.138Z"
-    },
-    {
-      "id": "2462",
-      "bank": "",
-      "points": 1111,
-      "date": "2024-11-06T00:48:23.962Z"
-    },
-    {
-      "id": "deea",
-      "bank": "카카오뱅크",
-      "points": 111,
-      "date": "2024-11-06T07:11:42.531Z"
-    },
-    {
-      "id": "4365",
-      "bank": "카카오뱅크",
-      "points": 1234,
-      "date": "2024-11-06T07:12:45.529Z"
-    },
-    {
-      "id": "be31",
-      "bank": "카카오뱅크",
-      "points": 11241,
-      "date": "2024-11-06T07:13:29.089Z"
-    },
-    {
-      "id": "e953",
-      "bank": "카카오뱅크",
-      "points": 1112312,
-      "date": "2024-11-06T07:18:03.581Z",
-      "userId": null
     }
   ],
-  "users": []
+  "users": [
+    {
+      "id": "c4b9",
+      "email": "1",
+      "password": "1",
+      "name": "1",
+      "phoneNumber": "1"
+    }
+  ],
+  "course": [
+    {
+      "id": "1731046040320",
+      "title": "ㄻㅇㄴ",
+      "type": "ㄹㄴㅁㄹㅇ",
+      "progress": "ㄹㄴㅇㄻ",
+      "professor": "ㅁㄴㄴ",
+      "location": "ㄴㄹㅇㄴ",
+      "startDate": "123213-12-12",
+      "endDate": "31231-02-12",
+      "category": "3123",
+      "description": "123",
+      "authorId": "c4b9",
+      "authorName": "1",
+      "enrolledUsers": [
+        "c4b9"
+      ]
+    }
+  ],
+  "inProgressChallenges": [
+    {
+      "id": 1,
+      "title": "30일 운동 챌린지"
+    },
+    {
+      "id": 2,
+      "title": "독서 100페이지"
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './PointRecharge.module.css'; // CSS 파일을 임포트합니다.
+import styles from './PointRecharge.module.css'; // styles 객체로 import합니다.
 
 const PointRecharge = () => {
     const [accountNumber, setAccountNumber] = useState('');
@@ -42,17 +42,17 @@ const PointRecharge = () => {
     };
 
     return (
-        <div className="container">
-            <h2 className="heading">포인트 충전</h2>
-            {message && <p className="message">{message}</p>}
+        <div className={styles.container}>
+            <h2 className={styles.heading}>포인트 충전</h2>
+            {message && <p className={styles.message}>{message}</p>}
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label className="label">
+                <div className={styles.formGroup}>
+                    <label className={styles.label}>
                         입금계좌 선택:
                         <select
                             value={accountNumber}
                             onChange={(e) => setAccountNumber(e.target.value)}
-                            className="select"
+                            className={styles.select}
                         >
                             <option value="">계좌 선택</option>
                             <option value="kakao">카카오뱅크</option>
@@ -61,8 +61,8 @@ const PointRecharge = () => {
                         </select>
                     </label>
                 </div>
-                <div className="form-group">
-                    <label className="label">
+                <div className={styles.formGroup}>
+                    <label className={styles.label}>
                         입금액:
                         <input
                             type="text"
@@ -70,11 +70,11 @@ const PointRecharge = () => {
                             onChange={handleAmountChange}
                             placeholder="입금액 입력"
                             required
-                            className="input"
+                            className={styles.input}
                         />
                     </label>
                 </div>
-                <button type="submit" className="button">신청</button>
+                <button type="submit" className={styles.button}>신청</button>
             </form>
         </div>
     );
