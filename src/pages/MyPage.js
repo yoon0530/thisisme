@@ -6,23 +6,32 @@ import axios from 'axios';
 function Mypage({ parsed, onLogout }) {
     const [recentlyViewed, setRecentlyViewed] = useState([]);
     const [showRecentlyViewed, setShowRecentlyViewed] = useState(false);
-    const [inProgressChallenges, setInProgressChallenges] = useState([]); // 진행 중인 도전 목록
+    const [inProgressChallenges, setInProgressChallenges] = useState([]); // 진행 중인 내가 신청한 도전 목록
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
-        // 진행 중인 도전 목록을 서버에서 가져오는 함수
         const fetchInProgressChallenges = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/inProgressChallenges');
-                setInProgressChallenges(response.data);
+                const response = await axios.get('http://localhost:5000/course'); // 전체 도전 목록 가져오기
+
+                const userId = parsed?.id; // 로그인한 사용자 ID
+                if (userId) {
+                    // 현재 진행 중이며 내가 신청한 도전만 필터링
+                    const enrolledChallenges = response.data.filter(
+                        challenge =>
+                            challenge.status === '진행 중' &&
+                            challenge.enrolledUsers?.includes(userId)
+                    );
+                    setInProgressChallenges(enrolledChallenges);
+                }
             } catch (error) {
                 console.error("진행 중인 도전을 불러오는 중 오류 발생:", error);
             }
         };
 
         fetchInProgressChallenges();
-    }, []);
+    }, [parsed]);
 
     const handleDeleteProfile = async (e) => {
         e.preventDefault();
@@ -35,7 +44,7 @@ function Mypage({ parsed, onLogout }) {
         if (window.confirm('정말로 탈퇴하시겠습니까?')) {
             try {
                 console.log("Deleting user with ID:", parsed.id);
-                const response = await axios.delete(`http://localhost:5000/users/${parsed.id}`);
+                const response = await axios.delete(`http://localhost:5000/user/${parsed.id}`);
 
                 if (response.status === 200 || response.status === 204) {
                     onLogout(false); // handleLogout 호출 시 alert 표시 안 함
@@ -98,7 +107,7 @@ function Mypage({ parsed, onLogout }) {
                         <p className="title">마이페이지</p>
                         <div className="boxList">
                             <button>정보수정</button>
-                            <button>최근 본 도전</button>
+                            <button onClick={() => setShowRecentlyViewed(!showRecentlyViewed)}>최근 본 도전</button>
                             <button onClick={() => navigate('/mypage/pointhistory')}>포인트 내역 확인</button>
                             <button>고객센터</button>
                             <button onClick={handleDeleteProfile}>회원탈퇴</button>
@@ -107,9 +116,11 @@ function Mypage({ parsed, onLogout }) {
                     <div className="whiteRight">
                         <div className="orderStatus">
                             <p>
-                                도전 현황<span>(현재 진행 중인 도전)</span>
+                                도전 현황<span>(현재 내가 신청한 진행 중인 도전)</span>
                             </p>
-                            <button>지난 도전</button>
+                            <Link to="/completedchallenges">
+                                <button className="link-button">지난 도전</button>
+                            </Link>
                         </div>
                         <div className="inProgressChallenges">
                             {inProgressChallenges.length > 0 ? (
@@ -119,7 +130,7 @@ function Mypage({ parsed, onLogout }) {
                                     </div>
                                 ))
                             ) : (
-                                <p>현재 진행 중인 도전이 없습니다.</p>
+                                <p>현재 내가 신청한 진행 중인 도전이 없습니다.</p>
                             )}
                         </div>
                     </div>
